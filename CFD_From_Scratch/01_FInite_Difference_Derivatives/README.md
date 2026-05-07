@@ -34,3 +34,12 @@ These methods are used in:
 - Understanding truncation errors
 - Comparison of numerical schemes
 - Foundation of CFD discretization
+
+## Files
+
+- `fdm_derivatives.py` — Python script for calculating first derivatives using forward, backward, and central difference methods.
+
+## How to Run
+
+```bash
+python fdm_derivatives.py
