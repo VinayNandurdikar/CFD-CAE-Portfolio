@@ -19,3 +19,12 @@ A CAE-based parametric optimization study of a mechanical bracket, including geo
 - Parametric design study
 - Engineering optimization
 - Simulation result interpretation
+
+### CFD From Scratch using Python
+
+A learning-based CFD project where I implement fundamental numerical methods from scratch using Python.  
+The project starts with finite difference methods and gradually builds toward solving basic CFD equations.
+
+[View Project Documentation](CFD_From_Scratch/README.md)
+
+[View Full Project Folder](CFD_From_Scratch)
