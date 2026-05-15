@@ -6,7 +6,25 @@ Welcome to my CFD and CAE portfolio. This repository showcases my engineering si
 
 # Projects
 
-## 1. CAE Parametric Optimization of a Mechanical Bracket
+### 1. CFD Analysis of Flow Through a 90° Pipe Elbow
+
+A complete open-source CFD workflow demonstrating geometry creation, mesh generation, simulation, and post-processing for incompressible flow through a 90° pipe elbow.
+
+**View Full Project Repository**  
+https://github.com/VinayNandurdikar/openfoam-elbow-cfd
+
+![Elbow CFD](https://github.com/VinayNandurdikar/openfoam-elbow-cfd/raw/main/P.jpg)
+
+**Skills Demonstrated**
+
+- Geometry creation using FreeCAD
+- Mesh generation using SALOME
+- OpenFOAM simulation setup
+- ParaView post-processing
+- Pressure-drop analysis
+- Engineering interpretation
+
+## 2. CAE Parametric Optimization of a Mechanical Bracket
 
 A CAE-based parametric optimization study of a mechanical bracket, including geometry parameterization, meshing, deformation analysis, and result comparison.
 
@@ -24,7 +42,7 @@ A CAE-based parametric optimization study of a mechanical bracket, including geo
 
 ---
 
-## 2. CFD From Scratch using Python
+## 3. CFD From Scratch using Python
 
 A learning-based CFD project where I implement fundamental numerical methods from scratch using Python.
 
