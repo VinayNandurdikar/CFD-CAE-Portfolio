@@ -32,6 +32,8 @@ The solution is iterated until the numerical error is less than 1e-8.
 ## Expected Result
 
 The final temperature distribution is a straight line from 0 to 1.
+<img width="790" height="490" alt="image" src="https://github.com/user-attachments/assets/7d120f6e-0aa9-4b67-abb5-e1e5c1cbc33d" />
+
 
 ## Key Learning
 
