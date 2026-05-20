@@ -24,7 +24,24 @@ https://github.com/VinayNandurdikar/openfoam-elbow-cfd
 - Pressure-drop analysis
 - Engineering interpretation
 
-## 2. CAE Parametric Optimization of a Mechanical Bracket
+  
+## 2. OpenFOAM Automation Project
+
+Automated generation of multiple OpenFOAM cases using Python, followed by batch simulation and dataset extraction for downstream analysis and machine learning.
+
+### Skills Demonstrated
+- Python scripting
+- OpenFOAM automation
+- Parametric case generation
+- Batch processing
+- Dataset creation
+- Scientific computing
+
+### Project Link
+[View Project](./04_OpenFOAM_Automation_Project)
+
+
+## 3. CAE Parametric Optimization of a Mechanical Bracket
 
 A CAE-based parametric optimization study of a mechanical bracket, including geometry parameterization, meshing, deformation analysis, and result comparison.
 
@@ -42,7 +59,7 @@ A CAE-based parametric optimization study of a mechanical bracket, including geo
 
 ---
 
-## 3. CFD From Scratch using Python
+## 4. CFD From Scratch using Python
 
 A learning-based CFD project where I implement fundamental numerical methods from scratch using Python.
 
