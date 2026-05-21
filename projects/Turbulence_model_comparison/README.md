@@ -82,7 +82,7 @@ and is widely used in industrial CFD applications.
 
 # Velocity Profile Comparison
 
-![Velocity comparison](results/komega_vs_kepsilon_velocity_profile.jpg)
+![Velocity comparison](k-omega%20vs%20k-epsilon.jpg)
 
 ---
 
@@ -104,4 +104,41 @@ The pitzDaily benchmark contains separated-flow and recirculation regions.
 
 These regions are highly sensitive to turbulence-model assumptions.
 
-The k-
+The k-omega SST model generally preserves stronger velocity gradients near walls and separated regions.
+
+The k-epsilon model introduces comparatively higher turbulent diffusion, which smooths the velocity profile.
+
+This comparison demonstrates how turbulence-model selection can influence CFD predictions even when geometry, mesh, and boundary conditions remain unchanged.
+
+---
+
+# Conclusion
+
+This study demonstrates the importance of turbulence-model selection in CFD simulations involving separated turbulent flow.
+
+Even for the same geometry and mesh, different turbulence models can produce noticeable variations in predicted velocity profiles.
+
+The project also highlights the importance of engineering interpretation and validation while performing CFD analysis.
+
+---
+
+# Files Included
+
+## Cases
+
+- pitzDaily_eps.7z
+- pitzDaily_omega.7z
+
+## Results
+
+- Velocity profile comparison plot
+
+---
+
+# Skills Demonstrated
+
+- OpenFOAM
+- ParaView
+- Turbulence Modelling
+- CFD Post-Processing
+- Engineering Interpretation
