@@ -24,8 +24,32 @@ https://github.com/VinayNandurdikar/openfoam-elbow-cfd
 - Pressure-drop analysis
 - Engineering interpretation
 
-  
-## 2. OpenFOAM Automation Project
+2. OpenFOAM Turbulence Model Comparison
+
+Compared k-epsilon and k-omega SST turbulence models using the OpenFOAM pitzDaily benchmark case.
+
+The project demonstrates how turbulence-model selection affects velocity prediction in separated turbulent flow.
+
+### Key Features
+
+- Turbulence model comparison
+- Velocity profile analysis
+- Engineering interpretation of separated flow
+- OpenFOAM simulation workflow
+- ParaView post-processing
+
+### Skills Demonstrated
+
+- OpenFOAM
+- ParaView
+- Turbulence Modelling
+- CFD Post-Processing
+- Engineering Interpretation
+
+### Project Link
+
+[View Project](projects/Turbulence_model_comparison/README.md)
+## 3. OpenFOAM Automation Project
 
 Automated generation of multiple OpenFOAM cases using Python, followed by batch simulation and dataset extraction for downstream analysis and machine learning.
 
@@ -41,7 +65,7 @@ Automated generation of multiple OpenFOAM cases using Python, followed by batch 
 [View Project](./04_OpenFOAM_Automation_Project)
 
 
-## 3. CAE Parametric Optimization of a Mechanical Bracket
+## 4. CAE Parametric Optimization of a Mechanical Bracket
 
 A CAE-based parametric optimization study of a mechanical bracket, including geometry parameterization, meshing, deformation analysis, and result comparison.
 
@@ -59,7 +83,7 @@ A CAE-based parametric optimization study of a mechanical bracket, including geo
 
 ---
 
-## 4. CFD From Scratch using Python
+## 5. CFD From Scratch using Python
 
 A learning-based CFD project where I implement fundamental numerical methods from scratch using Python.
 
