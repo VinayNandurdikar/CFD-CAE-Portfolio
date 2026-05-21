@@ -24,7 +24,7 @@ https://github.com/VinayNandurdikar/openfoam-elbow-cfd
 - Pressure-drop analysis
 - Engineering interpretation
 
-2. OpenFOAM Turbulence Model Comparison
+### 2. OpenFOAM Turbulence Model Comparison
 
 Compared k-epsilon and k-omega SST turbulence models using the OpenFOAM pitzDaily benchmark case.
 
