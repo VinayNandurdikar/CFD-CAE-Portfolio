@@ -108,7 +108,7 @@ In thermal insulation design:
 
 ### Project Link
 
-[View Project](projects/ANN_Thermal_Insulation_Optimisation)
+[View Full Project Repository](https://github.com/VinayNandurdikar/ANN-Based-Engineering-Design-Optimisation)
 
 ---
 
