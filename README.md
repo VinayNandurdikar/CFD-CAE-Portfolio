@@ -1,150 +1,156 @@
-# CFD-CAE Portfolio
+# CFD & CAE Engineering Portfolio
 
-Welcome to my CFD and CAE portfolio. This repository showcases my engineering simulation projects, including CFD, FEA, numerical methods, parametric studies, automation, and optimisation workflows.
+Welcome to my engineering simulation portfolio.
 
----
+This repository contains selected projects demonstrating my work in **Computational Fluid Dynamics (CFD), OpenFOAM, turbulence modelling, meshing, post-processing, and engineering analysis**.
 
-# Projects
-
-## 1. CFD Analysis of Flow Through a 90° Pipe Elbow
-
-A complete open-source CFD workflow demonstrating geometry creation, mesh generation, simulation, and post-processing for incompressible flow through a 90° pipe elbow.
-
-**View Full Project Repository**  
-https://github.com/VinayNandurdikar/openfoam-elbow-cfd
-
-![Elbow CFD](https://github.com/VinayNandurdikar/openfoam-elbow-cfd/raw/main/P.jpg)
-
-### Skills Demonstrated
-
-- Geometry creation using FreeCAD
-- Mesh generation using SALOME
-- OpenFOAM simulation setup
-- ParaView post-processing
-- Pressure-drop analysis
-- Engineering interpretation
+The current portfolio focuses on practical CFD studies using both standard benchmark cases and complete open-source simulation workflows.
 
 ---
 
-## 2. OpenFOAM Turbulence Model Comparison
+## Projects
 
-Compared k-epsilon and k-omega SST turbulence models using the OpenFOAM pitzDaily benchmark case.
+### 1. Open-Source CFD Analysis of Flow Through a 90° Pipe Elbow
 
-The project demonstrates how turbulence-model selection affects velocity prediction in separated turbulent flow.
+An end-to-end CFD project demonstrating a complete open-source engineering workflow:
 
-### Key Features
+**FreeCAD → SALOME → OpenFOAM → ParaView**
 
-- Turbulence model comparison
-- Velocity profile analysis
-- Engineering interpretation of separated flow
-- OpenFOAM simulation workflow
-- ParaView post-processing
+The study covers:
 
-### Skills Demonstrated
+* CAD geometry creation
+* CFD mesh generation
+* OpenFOAM simulation
+* Pressure and velocity post-processing
+* Engineering interpretation of internal flow through a pipe bend
 
-- OpenFOAM
-- ParaView
-- Turbulence modelling
-- CFD post-processing
-- Engineering interpretation
+![Pipe Elbow Pressure Distribution](projects/Open_Source_CFD_Analysis/P.jpg)
 
-### Project Link
+**Tools:** FreeCAD · SALOME · OpenFOAM · ParaView
 
-[View Project](projects/Turbulence_model_comparison/README.md)
+[View Full Project →](projects/Open_Source_CFD_Analysis/README.md)
 
 ---
 
-## 3. OpenFOAM Automation Project
+### 2. OpenFOAM Turbulence Model Comparison — k-ε vs k-ω SST
 
-Automated generation of multiple OpenFOAM cases using Python, followed by batch simulation and dataset extraction for downstream analysis and machine learning.
+A comparative CFD study using the OpenFOAM **pitzDaily** benchmark to investigate how turbulence-model selection influences predictions in separated turbulent flow.
 
-### Skills Demonstrated
+The study compares:
 
-- Python scripting
-- OpenFOAM automation
-- Parametric case generation
-- Batch processing
-- Dataset creation
-- Scientific computing
+* k-ε turbulence model
+* k-ω SST turbulence model
+* Velocity profiles
+* Separated-flow behaviour
+* Engineering implications of turbulence-model selection
 
-### Project Link
+![Turbulence Model Comparison](projects/Turbulence_model_comparison/k-omega%20vs%20k-epsilon.jpg)
 
-[View Project](./04_OpenFOAM_Automation_Project)
+**Tools:** OpenFOAM · ParaView · RANS Turbulence Modelling
 
----
-
-## 4. ANN-Based Thermal Insulation Design Optimisation
-
-A beginner-friendly artificial neural network project demonstrating how ANN can be used as a surrogate model for engineering design optimisation.
-
-The project trains a small neural network to learn the relationship between insulation thickness and heat loss. The trained ANN is then used to predict heat loss for different candidate thickness values and select the best design under a cost constraint.
-
-### Project Idea
-
-In thermal insulation design:
-
-- Increasing insulation thickness reduces heat loss
-- Increasing insulation thickness increases cost
-- The goal is to minimise heat loss while keeping cost within an allowed limit
-
-### Workflow
-
-1. Generate simple thermal insulation data
-2. Train an ANN to predict heat loss from insulation thickness
-3. Use the trained ANN as a surrogate model
-4. Test many candidate thickness values
-5. Select the best feasible thickness under a cost constraint
-
-### Skills Demonstrated
-
-- Artificial Neural Networks
-- PyTorch
-- Surrogate modelling
-- Engineering design optimisation
-- Cost-constrained optimisation
-- Python programming
-- Scientific computing
-- Data visualisation
-
-### Project Link
-
-[View Full Project Repository](https://github.com/VinayNandurdikar/ANN-Based-Engineering-Design-Optimisation)
+[View Full Project →](projects/Turbulence_model_comparison/README.md)
 
 ---
 
-## 5. CAE Parametric Optimisation of a Mechanical Bracket
+## Technical Skills Demonstrated
 
-A CAE-based parametric optimisation study of a mechanical bracket, including geometry parameterisation, meshing, deformation analysis, and result comparison.
+### CFD
 
-[View Project Documentation](projects/cae-parametric-optimization-bracket.md)
+* Computational Fluid Dynamics
+* Internal-flow analysis
+* Turbulent-flow modelling
+* RANS turbulence models
+* Flow separation and recirculation
+* Pressure and velocity analysis
 
-[View Full Project Repository](https://github.com/VinayNandurdikar/CAE-Parametric-Optimization-Bracket)
+### OpenFOAM
 
-### Skills Demonstrated
+* CFD case setup
+* Turbulence-model selection
+* Mesh import and preparation
+* Simulation execution
+* Result interpretation
 
-- CFD and CAE workflow documentation
-- Finite Element Analysis, FEA
-- Parametric design study
-- Engineering optimisation
-- Simulation result interpretation
+### Pre-Processing
+
+* FreeCAD
+* SALOME
+* Geometry preparation
+* Mesh generation
+
+### Post-Processing
+
+* ParaView
+* Pressure contours
+* Velocity-field visualisation
+* Velocity-profile comparison
+* CFD result interpretation
 
 ---
 
-## 6. CFD From Scratch using Python
+## Engineering Workflow
 
-A learning-based CFD project where I implement fundamental numerical methods from scratch using Python.
+```text
+Geometry
+   ↓
+Meshing
+   ↓
+CFD Setup
+   ↓
+Simulation
+   ↓
+Post-Processing
+   ↓
+Engineering Interpretation
+```
 
-The project starts with finite difference methods and gradually builds toward solving basic CFD equations.
+---
 
-[View Project Documentation](CFD_From_Scratch/README.md)
+## About This Portfolio
 
-[View Full Project Folder](CFD_From_Scratch)
+The objective of this repository is to document selected engineering simulation studies with emphasis on:
 
-### Skills Demonstrated
+* Clear CFD methodology
+* Reproducible workflows
+* Open-source engineering tools
+* Physical interpretation of simulation results
+* Continuous development of practical CFD skills
 
-- Python programming for engineering applications
-- Finite Difference Method, FDM
-- Numerical solution of partial differential equations, PDEs
-- Scientific computing using NumPy and Matplotlib
-- CFD fundamentals and discretisation techniques
-- Engineering data visualisation
+Additional CFD and CAE studies will be added as the portfolio develops.
+
+---
+
+## Current Tools
+
+`OpenFOAM` · `ParaView` · `FreeCAD` · `SALOME` · `CFD` · `RANS` · `Turbulence Modelling`
+
+---
+
+## Repository Structure
+
+```text
+CFD-CAE-Portfolio/
+│
+├── README.md
+│
+└── projects/
+    │
+    ├── Open_Source_CFD_Analysis/
+    │   ├── README.md
+    │   ├── Geom.FCStd
+    │   ├── Geom-Sweep.step
+    │   ├── Mesh_3.unv
+    │   ├── P.jpg
+    │   ├── U.jpg
+    │   └── elb.pvsm
+    │
+    └── Turbulence_model_comparison/
+        ├── README.md
+        ├── pitzDaily_eps.7z
+        ├── pitzDaily_omega.7z
+        └── k-omega vs k-epsilon.jpg
+```
+
+---
+
+**More CFD and CAE projects will be added progressively.**
