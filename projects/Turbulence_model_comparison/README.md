@@ -1,144 +1,183 @@
-# OpenFOAM Turbulence Model Comparison
+# OpenFOAM Turbulence Model Comparison: k-ε vs k-ω SST
 
 ## Overview
 
-This project compares two turbulence models in OpenFOAM:
+This project compares the behaviour of two commonly used RANS turbulence models in OpenFOAM:
 
-- k-epsilon
-- k-omega SST
+* **k-ε**
+* **k-ω SST**
 
-using the pitzDaily benchmark case.
+The comparison is performed using the **pitzDaily** benchmark case, which contains separated turbulent flow and provides a useful example for studying the influence of turbulence-model selection on CFD predictions.
 
-The objective is to understand how turbulence-model selection affects velocity prediction in separated turbulent flow.
-
----
-
-# Software Used
-
-- OpenFOAM
-- ParaView
-- GitHub
+The same geometry, mesh, boundary conditions, and general simulation setup were retained for both cases, while the turbulence model was changed.
 
 ---
 
-# Case Description
+## Objective
 
-The pitzDaily case is a standard CFD benchmark used for studying:
+The objective of this study is to investigate how turbulence-model selection influences the predicted velocity field in a separated-flow problem.
 
-- flow separation
-- recirculation
-- turbulent mixing
-- turbulent shear-layer behaviour
+The comparison focuses on:
 
-The same geometry, mesh, solver settings, and boundary conditions were used for both simulations.
-
-Only the turbulence model was changed.
+* Velocity-profile differences
+* Flow behaviour in separated and low-velocity regions
+* Sensitivity of CFD results to turbulence modelling
+* Engineering interpretation of the differences between the models
 
 ---
 
-# Turbulence Models
+## Software Used
 
-## k-epsilon Model
-
-The k-epsilon model solves transport equations for:
-
-- Turbulent kinetic energy (k)
-- Turbulence dissipation rate (epsilon)
-
-The turbulent viscosity is estimated using:
-
-\[
-\mu_t = C_\mu \rho \frac{k^2}{\epsilon}
-\]
-
-The model is widely used in industrial CFD because it is robust and computationally stable.
-
-However, it may become more diffusive in separated-flow regions.
+| Task              | Software                  |
+| ----------------- | ------------------------- |
+| CFD simulation    | OpenFOAM                  |
+| Post-processing   | ParaView                  |
+| Result comparison | Engineering data analysis |
 
 ---
 
-## k-omega SST Model
+## Benchmark Case
 
-The k-omega SST (Shear Stress Transport) model combines the advantages of:
+The study is based on the OpenFOAM **pitzDaily** case.
 
-- k-omega behaviour near walls
-- k-epsilon behaviour in the free-stream region
+The geometry contains a sudden expansion that produces:
 
-The turbulent viscosity is estimated using:
+* Flow separation
+* Recirculation
+* Shear-layer development
+* Turbulent mixing
+* Reattachment downstream
 
-\[
-\mu_t = \rho \frac{k}{\omega}
-\]
-
-The SST formulation improves prediction of:
-
-- separated flow
-- adverse pressure gradients
-- near-wall turbulence behaviour
-
-and is widely used in industrial CFD applications.
+These characteristics make the case suitable for demonstrating how different turbulence models can produce different predictions even when the computational domain and boundary conditions remain unchanged.
 
 ---
 
-# Velocity Profile Comparison
+## Turbulence Models
 
-![Velocity comparison](k-omega%20vs%20k-epsilon.jpg)
+### k-ε
 
----
+The k-ε model is one of the most widely used turbulence models in industrial CFD.
 
-# Observations
+It solves transport equations for:
 
-The k-omega SST model predicts slightly higher velocity compared to the k-epsilon model over most of the sampled region.
+* Turbulent kinetic energy, **k**
+* Turbulent dissipation rate, **ε**
 
-The k-epsilon model shows smoother and more diffusive behaviour.
+The model is known for its robustness and is commonly applied to many engineering flow problems.
 
-This difference occurs because the turbulence viscosity formulation differs between the two models.
+However, predictions in flows involving strong separation and adverse pressure gradients can be sensitive to the modelling assumptions.
 
-The sharp velocity drop near the downstream region indicates that the sampled line approaches a low-velocity or near-wall recirculation region.
+### k-ω SST
 
----
+The k-ω SST model combines features of the k-ω formulation near walls with k-ε-type behaviour away from the wall.
 
-# Engineering Interpretation
+It is commonly used for engineering applications involving:
 
-The pitzDaily benchmark contains separated-flow and recirculation regions.
+* Flow separation
+* Adverse pressure gradients
+* Near-wall flow
+* Turbomachinery and aerodynamic flows
 
-These regions are highly sensitive to turbulence-model assumptions.
-
-The k-omega SST model generally preserves stronger velocity gradients near walls and separated regions.
-
-The k-epsilon model introduces comparatively higher turbulent diffusion, which smooths the velocity profile.
-
-This comparison demonstrates how turbulence-model selection can influence CFD predictions even when geometry, mesh, and boundary conditions remain unchanged.
+The model is therefore useful for comparison with k-ε in the separated-flow region of the pitzDaily case.
 
 ---
 
-# Conclusion
+## Comparison Method
 
-This study demonstrates the importance of turbulence-model selection in CFD simulations involving separated turbulent flow.
+Two OpenFOAM simulations were evaluated:
 
-Even for the same geometry and mesh, different turbulence models can produce noticeable variations in predicted velocity profiles.
+```text
+pitzDaily
+│
+├── k-ε simulation
+│
+└── k-ω SST simulation
+        ↓
+   Post-processing
+        ↓
+Velocity profile extraction
+        ↓
+Direct model comparison
+```
 
-The project also highlights the importance of engineering interpretation and validation while performing CFD analysis.
+The purpose is not to identify a universally "best" turbulence model, but to demonstrate that turbulence-model selection is an important modelling decision and can affect the predicted flow field.
 
 ---
 
-# Files Included
+## Velocity Profile Comparison
 
-## Cases
+![Velocity Profile Comparison](k-omega%20vs%20k-epsilon.jpg)
 
-- pitzDaily_eps.7z
-- pitzDaily_omega.7z
+The extracted velocity profiles show differences between the two turbulence-model predictions.
 
-## Results
+The k-ω SST case predicts slightly higher velocity over much of the sampled region, while the k-ε result shows a comparatively smoother profile.
 
-- Velocity profile comparison plot
+A stronger change in velocity is visible toward the low-velocity region of the sampled profile, where the influence of separation and recirculation becomes more important.
 
 ---
 
-# Skills Demonstrated
+## Engineering Interpretation
 
-- OpenFOAM
-- ParaView
-- Turbulence Modelling
-- CFD Post-Processing
-- Engineering Interpretation
+Separated turbulent flows are particularly sensitive to turbulence modelling because the models approximate the effects of unresolved turbulent motion differently.
+
+The comparison illustrates an important practical CFD lesson:
+
+> **Using the same geometry, mesh, and boundary conditions does not guarantee identical results when the turbulence model is changed.**
+
+For engineering CFD, turbulence-model selection should therefore be supported by:
+
+* Understanding of the expected flow physics
+* Mesh quality and near-wall treatment
+* Sensitivity studies
+* Comparison with experimental, analytical, or published reference data where available
+
+---
+
+## Case Files
+
+The repository includes both simulation cases:
+
+| File                       | Description                                      |
+| -------------------------- | ------------------------------------------------ |
+| `pitzDaily_eps.7z`         | OpenFOAM case using the k-ε turbulence model     |
+| `pitzDaily_omega.7z`       | OpenFOAM case using the k-ω SST turbulence model |
+| `k-omega vs k-epsilon.jpg` | Velocity-profile comparison                      |
+
+---
+
+## Key Learning
+
+This study demonstrates that turbulence modelling is not simply a solver setting.
+
+The selected turbulence model influences how turbulent transport, near-wall behaviour, separation, and mixing are represented numerically.
+
+Understanding these differences is important when interpreting CFD results for real engineering applications.
+
+---
+
+## Skills Demonstrated
+
+* Computational Fluid Dynamics (CFD)
+* OpenFOAM
+* RANS turbulence modelling
+* k-ε turbulence model
+* k-ω SST turbulence model
+* ParaView
+* CFD post-processing
+* Velocity-profile comparison
+* Separated-flow analysis
+* Engineering interpretation
+
+---
+
+## Future Development
+
+Possible extensions include:
+
+* Comparison against experimental benchmark data
+* Quantitative reattachment-length comparison
+* Pressure-profile comparison
+* Turbulent kinetic-energy comparison
+* Mesh-sensitivity study
+* Near-wall resolution assessment
+* Additional turbulence models
