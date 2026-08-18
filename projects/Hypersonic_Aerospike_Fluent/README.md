@@ -4,13 +4,13 @@ A 2D axisymmetric CFD study of hypersonic flow over a spiked blunt body using **
 
 The study is based on the **Model 1 aerospike benchmark** reported by Roveda (AIAA 2009-367) and was carried out while learning high-speed CFD through the **Flowthermolab – CFD of High-Speed Aerodynamics** course.
 
-The main focus of this project was not only obtaining the flow solution, but understanding the modelling and numerical choices required for a stable Mach 6 compressible-flow simulation.
+The main focus of this project was to understand the modelling choices and numerical strategies required to obtain a stable solution for a challenging Mach 6 compressible-flow problem.
 
 ---
 
 ## Benchmark Conditions
 
-The freestream conditions used were:
+The freestream conditions were taken from the published Model 1 benchmark:
 
 | Parameter          |   Value |
 | ------------------ | ------: |
@@ -40,79 +40,92 @@ The freestream conditions used were:
 
 ### Mesh
 
-The current Fluent report contains approximately:
+The current Fluent model contains approximately:
 
 * **248,405 cells**
 * **504,133 faces**
 * **255,729 nodes**
 
-The mesh was refined around the aerospike and forebody where strong gradients and shock structures are expected.
-
-Adaptive Mesh Refinement (AMR) was also used during the solution workflow to increase resolution in important flow regions without uniformly refining the complete domain.
+Adaptive Mesh Refinement (AMR) was also used during the solution workflow to provide additional resolution in regions of strong flow gradients without uniformly refining the entire computational domain.
 
 ---
 
-## Key Modelling Choices
+## Important Modelling Choices
 
-### Axisymmetric Formulation
+### 1. Axisymmetric Formulation
 
-The geometry is a body of revolution at zero angle of attack, so a **2D axisymmetric** model was used.
+The geometry represents a body of revolution at zero angle of attack.
 
-The centreline was defined using an **Axis** boundary rather than a normal symmetry boundary.
+Therefore, a **2D axisymmetric** formulation was used instead of a full 3D model.
 
-This retains the axisymmetric form of the governing equations while greatly reducing computational cost compared with a full 3D simulation.
+The centreline was defined using an **Axis** boundary rather than a conventional symmetry boundary.
 
-### Ideal-Gas Density
+This significantly reduces computational cost while retaining the axisymmetric form of the governing equations.
 
-At Mach 6, density changes significantly because of large pressure and temperature variations.
+---
 
-Therefore air was modelled as an **ideal gas** rather than using constant density.
+### 2. Ideal-Gas Density
 
-### Sutherland Viscosity
+For hypersonic compressible flow, density changes significantly because of the large variations in pressure and temperature.
+
+Air was therefore modelled as an **ideal gas** rather than using a constant density.
+
+---
+
+### 3. Sutherland Viscosity
 
 The viscosity of air changes with temperature.
 
-Because hypersonic flows contain large temperature variations, **Sutherland's law** was used instead of a constant viscosity value.
+Because hypersonic flows involve significant temperature variation, **Sutherland's law** was used for temperature-dependent dynamic viscosity.
 
-### Operating Pressure
+---
 
-The operating pressure was set to:
+### 4. Operating Pressure
+
+The Fluent operating pressure was set to:
 
 ```text
 0 Pa
 ```
 
-This allowed the specified freestream pressure of **1951 Pa** to be treated directly as the required pressure for the compressible-flow calculation.
+This allows the specified freestream pressure of **1951 Pa** to be used directly in the compressible-flow setup.
 
-### Pressure Far-Field Boundary
+---
 
-The project was also my first practical use of a **Pressure Far-Field** boundary condition for external compressible CFD.
+### 5. Pressure Far-Field Boundary
 
-The freestream was defined using:
+This project was also my first practical use of a **Pressure Far-Field** boundary condition.
+
+The freestream was specified using:
 
 ```text
-Mach Number       = 6.06
-Static Pressure   = 1951 Pa
+Mach Number        = 6.06
+Static Pressure    = 1951 Pa
 Static Temperature = 58.25 K
 ```
+
+This boundary condition is particularly useful for external compressible-flow simulations.
 
 ---
 
 ## Solver Divergence and Stabilisation
 
-One of the main learning outcomes of this project was troubleshooting solver divergence.
+One of the main learning outcomes of this project was troubleshooting an initially diverging density-based solution.
 
-The initial turbulent calculation became unstable within only a few iterations. Fluent reported:
+The first turbulent simulations became unstable within only a few iterations.
+
+Fluent reported:
 
 * excessive temperature changes,
-* pressure and temperature limiting,
+* pressure limiting,
+* temperature limiting,
 * turbulent-viscosity limiting,
 * divergence in the `omega` AMG solver,
-* and finally a floating-point exception.
+* and eventually a floating-point exception.
 
-The solution was stabilised using a more gradual approach.
+A gradual solution strategy was therefore adopted.
 
-### Step 1 — Reduce CFL
+### Step 1 — Reduce the Courant Number
 
 The density-based Courant number was reduced to:
 
@@ -120,76 +133,112 @@ The density-based Courant number was reduced to:
 CFL = 0.1
 ```
 
-This made the pseudo-time advancement less aggressive.
+This reduced the aggressiveness of the pseudo-time advancement and improved numerical stability.
 
-### Step 2 — Start Laminar
+### Step 2 — Start with a Laminar Solution
 
-The flow was initially solved without the turbulence model.
+The simulation was initially run without the turbulence model.
 
-This allowed the principal compressible-flow and shock structure to develop before introducing the additional turbulence equations.
+This allowed the main compressible-flow field and shock structures to begin developing before introducing the additional turbulence transport equations.
 
 ### Step 3 — Activate SST k-ω
 
 After obtaining a stable mean-flow solution, the **SST k-ω turbulence model** was enabled.
 
-The turbulent calculation then remained stable.
+The turbulent calculation then remained numerically stable.
 
-This demonstrated the importance of **initialisation and continuation strategies** in difficult high-speed CFD simulations.
+This exercise demonstrated the importance of **initialisation, CFL control and continuation strategies** in high-speed CFD.
 
 ---
 
-## Current Results
+## Adaptive Mesh Refinement
 
-The current project contains:
+Adaptive Mesh Refinement was used during the solution process.
 
-* Density contour
-* Residual history
-* Drag-monitor history
-* Fluent simulation report
+Hypersonic flows contain thin regions with very large gradients across shocks and expansion structures.
 
-The density contour already shows strong density variations associated with the hypersonic flow around the aerospike and blunt body.
+Refining the entire computational domain would substantially increase computational cost.
 
-Additional visualisations such as:
+AMR allows additional mesh resolution to be concentrated in regions where it is most useful while retaining a more economical mesh elsewhere.
 
-* Mach number,
-* static pressure,
-* static temperature,
-* Schlieren / density-gradient plots,
-* and detailed shock structures
+---
 
-can be added in future post-processing.
+# Visual Results
+
+## Density Contour
+
+The density field shows strong variations produced by the interaction of the Mach 6 freestream with the aerospike and blunt body.
+
+![Density Contour](Density.PNG)
+
+---
+
+## Residual History
+
+The residual history documents the numerical behaviour of the calculation during the solution process.
+
+![Residual History](residuals.png)
+
+The current solution is numerically stable, although the Fluent report does not yet satisfy the specified residual convergence criteria for all equations.
+
+---
+
+## Drag Monitor History
+
+A drag-monitor history was also recorded to assess how the aerodynamic solution evolves during the steady-state calculation.
+
+![Drag Monitor History](drag_monitor.png)
+
+The plot is currently used only as a **solution monitor**. A final drag coefficient is not reported because the aerodynamic reference values still require verification.
+
+---
+
+## Flow Physics
+
+The published benchmark describes several important structures in this aerospike flow:
+
+* Strong shock generated by the aerodisk
+* Rapid expansion behind the aerodisk
+* Recirculation behind the disk
+* Shear-layer development
+* Recompression shocks
+* Flow separation along the sting
+* Reattachment shock near the blunt forebody
+
+These interacting shock, expansion and separated-flow structures make the configuration a useful benchmark for high-speed CFD.
 
 ---
 
 ## Current Status
 
-The calculation is currently presented as a **benchmark reproduction and learning study**.
+This project is presented as a **benchmark reproduction and learning study**, rather than as a fully validated CFD solution.
 
-The solver has been stabilised successfully, but the current Fluent report does **not yet satisfy the specified residual convergence criteria**.
+The main compressible-flow calculation has been stabilised successfully.
 
-Further work will include:
+Future work can include:
 
-* continuing convergence assessment,
-* checking engineering monitors,
-* producing Mach and pressure contours,
-* generating Schlieren visualisation,
-* examining AMR regions,
-* checking mesh independence,
-* and comparing the predicted flow structures with the published benchmark.
-
-A drag coefficient is intentionally not reported at this stage because the aerodynamic reference values still require verification.
+* Additional convergence assessment
+* Mach-number contours
+* Static-pressure contours
+* Static-temperature contours
+* Schlieren / density-gradient visualisation
+* Examination of AMR regions
+* Mesh-independence assessment
+* Near-wall resolution checks
+* Quantitative comparison with published surface-pressure data
+* Correct aerodynamic reference values and drag-coefficient calculation
 
 ---
 
 ## Key Learning Outcomes
 
-This study provided practical experience with:
+This project provided practical experience with:
 
 * Hypersonic compressible CFD
 * Density-based solvers
 * 2D axisymmetric modelling
 * Axis vs symmetry boundary conditions
-* Pressure far-field boundaries
+* Pressure far-field boundary conditions
 * Ideal-gas density
 * Sutherland viscosity
 * Operating-pressure selection
@@ -198,7 +247,7 @@ This study provided practical experience with:
 * Laminar-to-turbulent solution initialisation
 * SST k-ω turbulence modelling
 * Adaptive Mesh Refinement
-* Shock-flow post-processing
+* Monitoring convergence and aerodynamic quantities
 
 ---
 
