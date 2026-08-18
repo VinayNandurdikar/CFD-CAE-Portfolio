@@ -2,27 +2,28 @@
 
 Welcome to my engineering simulation portfolio.
 
-This repository contains selected projects demonstrating my work in **Computational Fluid Dynamics (CFD), OpenFOAM, turbulence modelling, meshing, post-processing, and engineering analysis**.
+This repository contains selected projects demonstrating practical experience in **Computational Fluid Dynamics (CFD), compressible and incompressible flow, turbulence modelling, meshing, numerical simulation, post-processing, and engineering analysis**.
 
-The current portfolio focuses on practical CFD studies using both standard benchmark cases and complete open-source simulation workflows.
+The portfolio includes both **open-source CFD workflows** and **ANSYS Fluent simulations**, with emphasis on understanding the physical problem, selecting appropriate numerical models, troubleshooting solver behaviour, and interpreting simulation results.
 
 ---
 
-## Projects
+# Projects
 
-### 1. Open-Source CFD Analysis of Flow Through a 90° Pipe Elbow
+## 1. Open-Source CFD Analysis of Flow Through a 90° Pipe Elbow
 
-An end-to-end CFD project demonstrating a complete open-source engineering workflow:
+An end-to-end CFD project demonstrating a completely open-source engineering workflow:
 
 **FreeCAD → SALOME → OpenFOAM → ParaView**
 
-The study covers:
+The project includes:
 
 * CAD geometry creation
 * CFD mesh generation
-* OpenFOAM simulation
+* OpenFOAM simulation setup
 * Pressure and velocity post-processing
-* Engineering interpretation of internal flow through a pipe bend
+* Flow development through a 90° bend
+* Engineering interpretation of internal-flow behaviour
 
 ![Pipe Elbow Pressure Distribution](projects/Open_Source_CFD_Analysis/P.jpg)
 
@@ -32,16 +33,17 @@ The study covers:
 
 ---
 
-### 2. OpenFOAM Turbulence Model Comparison — k-ε vs k-ω SST
+## 2. OpenFOAM Turbulence Model Comparison — k-ε vs k-ω SST
 
-A comparative CFD study using the OpenFOAM **pitzDaily** benchmark to investigate how turbulence-model selection influences predictions in separated turbulent flow.
+A comparative CFD study using the OpenFOAM **pitzDaily** benchmark to investigate the influence of turbulence-model selection on separated turbulent flow.
 
 The study compares:
 
 * k-ε turbulence model
 * k-ω SST turbulence model
-* Velocity profiles
-* Separated-flow behaviour
+* Velocity distributions
+* Flow separation and recirculation
+* Differences in model predictions
 * Engineering implications of turbulence-model selection
 
 ![Turbulence Model Comparison](projects/Turbulence_model_comparison/k-omega%20vs%20k-epsilon.jpg)
@@ -52,81 +54,189 @@ The study compares:
 
 ---
 
-## Technical Skills Demonstrated
+## 3. Hypersonic Aerospike CFD — Mach 6.06
 
-### CFD
+A **2D axisymmetric hypersonic CFD benchmark study** of flow over a spiked blunt body using **ANSYS Fluent 2022 R1**.
 
-* Computational Fluid Dynamics
-* Internal-flow analysis
-* Turbulent-flow modelling
-* RANS turbulence models
+The simulation reproduces the freestream conditions of the Model 1 aerospike benchmark reported by Roveda:
+
+* **Mach number:** 6.06
+* **Static pressure:** 1951 Pa
+* **Static temperature:** 58.25 K
+
+The project focuses particularly on the practical numerical considerations required for stable high-speed compressible CFD.
+
+Key aspects include:
+
+* Density-based implicit solver
+* 2D axisymmetric formulation
+* Pressure far-field boundary conditions
+* Ideal-gas density
+* Sutherland temperature-dependent viscosity
+* SST k-ω turbulence modelling
+* Courant-number control
+* Solver-divergence diagnosis
+* Laminar-to-turbulent solution initialisation
+* Adaptive Mesh Refinement (AMR)
+* Residual and aerodynamic-monitor assessment
+
+![Hypersonic Aerospike Density Contour](projects/Hypersonic_Aerospike_Fluent/Density.PNG)
+
+An important part of this study was troubleshooting an initially diverging Mach 6 solution. A stable solution procedure was obtained by reducing the Courant number to **0.1**, establishing the compressible flow field first with a laminar calculation, and subsequently activating the SST k-ω turbulence model.
+
+The project is currently presented as a **benchmark reproduction and learning study**, with additional quantitative validation and post-processing planned.
+
+**Tools:** ANSYS Fluent · Hypersonic CFD · Compressible Flow · SST k-ω · AMR
+
+[View Full Project →](projects/Hypersonic_Aerospike_Fluent/README.md)
+
+---
+
+# Technical Skills Demonstrated
+
+## Computational Fluid Dynamics
+
+* Internal and external flow simulation
+* Incompressible and compressible CFD
+* Hypersonic flow modelling
+* Steady-state simulations
 * Flow separation and recirculation
+* Shock-wave and expansion-flow physics
 * Pressure and velocity analysis
+* Numerical convergence assessment
+* Solver troubleshooting and stabilisation
 
-### OpenFOAM
+## Turbulence Modelling
+
+* Reynolds-Averaged Navier–Stokes (RANS)
+* k-ε turbulence model
+* k-ω SST turbulence model
+* Turbulence-model comparison
+* Turbulence initialisation
+* Separated turbulent flows
+
+## High-Speed CFD
+
+* Density-based compressible solvers
+* Axisymmetric CFD
+* Pressure far-field boundary conditions
+* Ideal-gas modelling
+* Temperature-dependent viscosity using Sutherland's law
+* Operating-pressure selection
+* Courant-number control
+* Shock-containing flows
+* Adaptive Mesh Refinement
+
+## OpenFOAM
 
 * CFD case setup
+* Boundary-condition configuration
 * Turbulence-model selection
 * Mesh import and preparation
 * Simulation execution
 * Result interpretation
 
-### Pre-Processing
+## ANSYS Fluent
+
+* Density-based implicit solver
+* Compressible-flow setup
+* Axisymmetric modelling
+* Energy equation
+* SST k-ω turbulence
+* Pressure far-field boundaries
+* Adaptive Mesh Refinement
+* Solver monitoring and convergence troubleshooting
+
+## CAD & Meshing
 
 * FreeCAD
 * SALOME
 * Geometry preparation
-* Mesh generation
+* CFD mesh generation
+* Boundary identification
+* Local mesh refinement
 
-### Post-Processing
+## Post-Processing
 
 * ParaView
+* ANSYS Fluent
 * Pressure contours
-* Velocity-field visualisation
-* Velocity-profile comparison
+* Velocity visualisation
+* Density contours
+* Residual monitoring
+* Aerodynamic-monitor plots
 * CFD result interpretation
 
 ---
 
-## Engineering Workflow
+# Engineering Workflow
+
+The projects in this portfolio generally follow the engineering simulation workflow:
 
 ```text
-Geometry
-   ↓
+Problem Definition
+        ↓
+Geometry Preparation
+        ↓
 Meshing
-   ↓
-CFD Setup
-   ↓
+        ↓
+Physics & Boundary Conditions
+        ↓
+Solver Setup
+        ↓
 Simulation
-   ↓
+        ↓
+Convergence Assessment
+        ↓
 Post-Processing
-   ↓
+        ↓
 Engineering Interpretation
 ```
 
+A particular emphasis is placed on understanding **why specific modelling and numerical choices are made**, rather than treating CFD purely as a software workflow.
+
 ---
 
-## About This Portfolio
+# Software & Tools
+
+### CFD Solvers
+
+`OpenFOAM` · `ANSYS Fluent`
+
+### CAD & Meshing
+
+`FreeCAD` · `SALOME`
+
+### Post-Processing
+
+`ParaView` · `ANSYS Fluent`
+
+### CFD Methods
+
+`RANS` · `k-ε` · `k-ω SST` · `Compressible Flow` · `Hypersonic CFD` · `Axisymmetric CFD` · `AMR`
+
+---
+
+# About This Portfolio
 
 The objective of this repository is to document selected engineering simulation studies with emphasis on:
 
 * Clear CFD methodology
+* Appropriate physical modelling
+* Numerical-method understanding
 * Reproducible workflows
-* Open-source engineering tools
-* Physical interpretation of simulation results
-* Continuous development of practical CFD skills
+* Solver troubleshooting
+* Engineering interpretation of results
+* Experience with both open-source and commercial CFD tools
+* Continuous development of practical CAE/CFD skills
 
-Additional CFD and CAE studies will be added as the portfolio develops.
+The projects range from introductory benchmark studies to more specialised high-speed-flow simulations.
 
----
-
-## Current Tools
-
-`OpenFOAM` · `ParaView` · `FreeCAD` · `SALOME` · `CFD` · `RANS` · `Turbulence Modelling`
+Additional CFD and CAE studies will be added progressively.
 
 ---
 
-## Repository Structure
+# Repository Structure
 
 ```text
 CFD-CAE-Portfolio/
@@ -144,13 +254,25 @@ CFD-CAE-Portfolio/
     │   ├── U.jpg
     │   └── elb.pvsm
     │
-    └── Turbulence_model_comparison/
+    ├── Turbulence_model_comparison/
+    │   ├── README.md
+    │   ├── pitzDaily_eps.7z
+    │   ├── pitzDaily_omega.7z
+    │   └── k-omega vs k-epsilon.jpg
+    │
+    └── Hypersonic_Aerospike_Fluent/
         ├── README.md
-        ├── pitzDaily_eps.7z
-        ├── pitzDaily_omega.7z
-        └── k-omega vs k-epsilon.jpg
+        ├── Density.PNG
+        ├── residuals.png
+        └── drag_monitor.png
 ```
 
 ---
 
-**More CFD and CAE projects will be added progressively.**
+## Portfolio Focus
+
+**CFD · CAE · OpenFOAM · ANSYS Fluent · Compressible Flow · Hypersonic CFD · Turbulence Modelling · Meshing · Post-Processing**
+
+---
+
+**More CFD and CAE projects will be added as the portfolio develops.**
