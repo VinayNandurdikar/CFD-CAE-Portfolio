@@ -2,17 +2,17 @@
 
 ## Overview
 
-This project demonstrates a **2D compressible CFD simulation of the RAE2822 aerofoil** under transonic flow conditions using **OpenFOAM**.
+This project presents a **2D compressible CFD simulation of the RAE2822 aerofoil** under transonic flow conditions using **OpenFOAM**.
 
-The objective was to develop practical experience with compressible external aerodynamics, OpenFOAM meshing, far-field boundary conditions, turbulence modelling, and post-processing of transonic flow features.
+The objective of the exercise was to gain practical experience with compressible external aerodynamics, OpenFOAM meshing, far-field boundary conditions, turbulence modelling, and post-processing of transonic flow features.
 
-The simulation captures acceleration of the flow over the aerofoil and the development of locally supersonic flow followed by compression across the upper surface.
+The simulation shows acceleration of the flow over the aerofoil, development of a locally supersonic region, and subsequent compression over the upper surface.
 
-> **Project origin:** This is a guided learning project completed as part of the **FlowThermoLab – CFD of High-Speed Aerodynamics** course. The tutorial framework and learning material are credited to FlowThermoLab. The case was executed, inspected and post-processed by me as part of developing practical OpenFOAM and high-speed CFD skills.
+> **Project origin:** This is a guided learning project completed as part of the **FlowThermoLab – CFD of High-Speed Aerodynamics** course. Credit for the original tutorial framework and course material belongs to FlowThermoLab and the course instructors. The case was executed, inspected, and post-processed by me to develop practical OpenFOAM and high-speed CFD skills.
 
 ---
 
-## Case
+## Case Summary
 
 | Parameter                     |               Value |
 | ----------------------------- | ------------------: |
@@ -34,70 +34,78 @@ The simulation captures acceleration of the flow over the aerofoil and the devel
 
 ## CFD Setup
 
-### Compressible Air
+### Compressible Air Model
 
-Air was modelled as a **perfect gas**, allowing density to vary with pressure and temperature. This is necessary for transonic flow where compressibility effects become significant.
+Air was modelled as a **perfect gas**, allowing density to vary with pressure and temperature. This is important in transonic flow because compressibility effects become significant as the local Mach number approaches and exceeds unity.
 
 The thermophysical model uses:
 
 * Perfect-gas equation of state
-* (C_p = 1005) J/(kg·K)
-* Dynamic viscosity = (1.63\times10^{-5}) Pa·s
-* Prandtl number = 0.72
+* `Cp = 1005 J/(kg·K)`
+* Dynamic viscosity = `1.63 × 10⁻⁵ Pa·s`
+* Prandtl number = `0.72`
 
 ### Turbulence Model
 
 The simulation uses the **k-ω SST RANS turbulence model**.
 
-The SST model combines the near-wall behaviour of the k-ω formulation with k-ε-like behaviour away from the wall and is widely used for external aerodynamic flows involving adverse pressure gradients and possible flow separation.
+The SST model combines the near-wall behaviour of the k-ω formulation with k-ε-like behaviour away from the wall. It is widely used for external aerodynamic flows involving adverse pressure gradients and possible flow separation.
 
 ### Boundary Conditions
 
-The outer domain uses OpenFOAM **freestream boundary conditions** for velocity, pressure and temperature.
+The outer computational domain uses OpenFOAM **freestream boundary conditions** for velocity, pressure, and temperature.
 
-The aerofoil surface is defined as:
+The aerofoil surface is treated as a wall with:
 
-* No-slip wall for velocity
-* Zero-gradient pressure
-* Adiabatic wall for temperature
+* No-slip velocity condition
+* Zero-gradient pressure condition
+* Adiabatic temperature treatment
 
-The front and back surfaces are defined as `empty`, making the case effectively **two-dimensional**.
+The front and back patches are defined as `empty`, making the case effectively **two-dimensional**.
 
 ---
 
 ## Mesh
 
-The aerofoil was meshed using OpenFOAM meshing tools with local refinement around the aerofoil surface.
+The mesh was generated using OpenFOAM meshing tools with progressive refinement around the aerofoil and near-field region.
 
-The final mesh contains approximately **1.52 million cells**, with considerably finer resolution near the aerofoil compared with the far-field region.
+The final mesh contains approximately **1.52 million cells**.
 
-![Mesh](images/mesh.jpeg)
+### Mesh development
 
-Local refinement is important in this case because strong gradients in velocity, pressure and Mach number occur close to the aerofoil and particularly around transonic compression regions.
+![Initial mesh](images/0-mesh.jpeg)
+
+![Intermediate mesh refinement](images/1-mesh.jpeg)
+
+![Further mesh refinement](images/2-mesh.jpeg)
+
+![Final refined mesh](images/3-mesh.jpeg)
+
+The mesh becomes progressively finer close to the aerofoil, where strong gradients in velocity, pressure, and Mach number are expected. Refinement in this region is important for resolving the transonic acceleration and compression features around the aerofoil.
 
 ---
 
-## Mach Number
+## Mach Number Distribution
 
-![Mach Number](images/mach_contour.jpeg)
+![Mach number contour](images/mach.jpeg)
 
-The Mach-number contour shows acceleration of the flow over the aerofoil upper surface.
+The Mach-number contour shows strong acceleration of the flow over the upper surface of the aerofoil.
 
 Although the incoming flow is approximately **Mach 0.73**, the local flow accelerates to **supersonic conditions** over part of the upper surface before undergoing rapid compression.
 
-This coexistence of subsonic and locally supersonic regions is characteristic of **transonic aerofoil flow**.
+The presence of both subsonic and locally supersonic regions is characteristic of **transonic aerofoil flow**.
 
 ---
 
-## Pressure
+## Pressure Distribution
 
-![Pressure](images/pressure_contour.jpeg)
+![Pressure contour](images/pressure.jpeg)
 
-The pressure contour shows the corresponding pressure variation around the aerofoil.
+The pressure contour shows the corresponding static-pressure variation around the aerofoil.
 
-Acceleration over the upper surface produces a reduction in static pressure. The subsequent compression of the locally supersonic flow creates a strong pressure recovery region.
+Acceleration over the upper surface produces a reduction in static pressure. The subsequent compression of the locally supersonic flow produces a strong pressure-recovery region.
 
-The relationship between the Mach and pressure contours illustrates the coupling between flow acceleration and pressure variation in compressible aerodynamics.
+The Mach and pressure contours together illustrate the close relationship between flow acceleration, compressibility, and pressure variation in transonic aerodynamics.
 
 ---
 
@@ -106,35 +114,34 @@ The relationship between the Mach and pressure contours illustrates the coupling
 This project helped me gain practical experience with:
 
 * Setting up **compressible external aerodynamic CFD** in OpenFOAM
-* Using a **perfect-gas thermodynamic model**
+* Modelling air using a **perfect-gas equation of state**
 * Applying OpenFOAM **freestream boundary conditions**
-* Understanding the role of the **k-ω SST turbulence model**
+* Using the **k-ω SST turbulence model** for external aerodynamic flow
 * Generating and inspecting locally refined meshes
 * Understanding **transonic acceleration and compression**
 * Post-processing Mach-number and pressure fields in ParaView
-* Interpreting the relationship between Mach number and pressure in high-speed flows
+* Interpreting the relationship between Mach number and pressure in compressible flow
 
 ---
 
 ## Possible Future Improvements
 
-The current project is primarily a learning and demonstration case. Future extensions could include:
+The present project is primarily a guided learning and demonstration case. It can be developed further by adding:
 
-* Surface pressure coefficient (C_p) extraction
+* Surface pressure coefficient (`Cp`) distribution
 * Comparison with published RAE2822 experimental data
 * Lift and drag coefficient evaluation
-* Residual and force convergence monitoring
+* Residual and force convergence histories
 * Mesh-independence assessment
-* Near-wall resolution and (y^+) assessment
+* Near-wall resolution and `y+` assessment
 * Comparison of turbulence models
 
-These additions would allow the case to be developed from a guided tutorial into a more complete **CFD verification and validation study**.
+These additions would develop the case from a tutorial exercise into a more complete **CFD verification and validation study**.
 
 ---
 
 ## Acknowledgement
 
-This case was completed while following the **FlowThermoLab CFD of High-Speed Aerodynamics course**. Credit for the original tutorial and educational material belongs to FlowThermoLab and the respective course instructors.
+This case was completed while following the **FlowThermoLab CFD of High-Speed Aerodynamics** course.
 
-The project is included here to document the CFD workflow, simulation experience and technical concepts learned during the exercise.
-
+Credit for the original tutorial and educational material belongs to **FlowThermoLab and the respective course instructors**. This repository entry documents the simulation workflow, CFD concepts, and practical skills developed while completing the exercise.
