@@ -213,6 +213,15 @@ Adding experimental validation and aerodynamic coefficients would develop this c
 * ParaView
 
 ---
+## Full OpenFOAM Case Files
+
+The complete OpenFOAM case archive is stored externally because the full simulation files exceed GitHub's practical file-size limits.
+
+**[Download / View Full RAE2822 OpenFOAM Case – Google Drive](https://drive.google.com/file/d/18MZNIgVt2rFg3jnzK6iIV047KiTyywEh/view?usp=drive_link)**
+
+The archive is provided mainly for **reference and reproducibility**.
+
+The GitHub repository contains the project documentation, mesh-development images, Mach-number contour, pressure contour, and other lightweight project material.
 
 ## Acknowledgement
 
