@@ -381,7 +381,31 @@ Useful future extensions include:
 These additions would allow the project to progress from a 3D CFD workflow demonstration toward a more quantitative aerodynamic analysis.
 
 ---
+## OpenFOAM Case Files
 
+A lightweight version of the OpenFOAM case is included in this repository:
+
+**[Download Clean OpenFOAM Case](3D_Fighter_Aircraft_OpenFOAM_CleanCase.zip)**
+
+The archive contains the essential files required to inspect and rebuild the case:
+
+- Initial and boundary-condition fields in `0/`
+- `thermophysicalProperties`
+- `turbulenceProperties`
+- `fighter.stl`
+- `fighter.eMesh`
+- Complete `system/` setup
+- `blockMeshDict`
+- `snappyHexMeshDict`
+- `surfaceFeatureExtractDict`
+- `fvSchemes`
+- `fvSolution`
+- `controlDict`
+- `decomposeParDict`
+
+The generated `constant/polyMesh/` was intentionally excluded to keep the repository lightweight. The 3D mesh can be regenerated using the supplied meshing dictionaries.
+
+---
 ## Case Structure
 
 The OpenFOAM case contains the standard directory structure:
