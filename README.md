@@ -56,7 +56,7 @@ The study compares:
 
 ## 3. Hypersonic Aerospike CFD — Mach 6.06
 
-A **2D axisymmetric hypersonic CFD benchmark study** of flow over a spiked blunt body using **ANSYS Fluent 2022 R1**.
+A **2D axisymmetric hypersonic CFD benchmark study** of flow over a spiked blunt body using **ANSYS Fluent**.
 
 The simulation reproduces the freestream conditions of the Model 1 aerospike benchmark:
 
@@ -86,6 +86,8 @@ An important part of this study was troubleshooting an initially diverging Mach 
 
 The project is presented as a **benchmark reproduction and guided learning study**, with additional quantitative validation and post-processing planned.
 
+> This project was completed as part of the **FlowThermoLab – CFD of High-Speed Aerodynamics** course. Credit for the original educational material and tutorial framework belongs to FlowThermoLab and the respective course instructors.
+
 **Tools:** ANSYS Fluent · Hypersonic CFD · Compressible Flow · SST k-ω · AMR
 
 [View Full Project →](projects/Hypersonic_Aerospike_Fluent/README.md)
@@ -107,7 +109,7 @@ Key aspects include:
 * `blockMesh` background-domain generation
 * `snappyHexMesh` surface-conforming meshing
 * Local mesh refinement around the aerofoil
-* Approximately 1.52 million computational cells
+* Approximately **1.52 million computational cells**
 * Mach-number and pressure-field post-processing
 * Interpretation of transonic acceleration and compression
 
@@ -123,11 +125,50 @@ The project also provided practical experience with the OpenFOAM meshing workflo
 
 ---
 
+## 5. 3D Fighter Aircraft External Aerodynamics — OpenFOAM
+
+A **3D compressible external-aerodynamics simulation** of a fighter-aircraft geometry using **OpenFOAM**.
+
+This project extends the CFD workflow from two-dimensional aerofoil analysis to a complete three-dimensional aircraft configuration and focuses particularly on complex 3D meshing using `snappyHexMesh`.
+
+Key aspects include:
+
+* Full 3D fighter-aircraft STL geometry
+* Compressible steady-state CFD using `rhoSimpleFoam`
+* k-ω SST turbulence modelling
+* Perfect-gas air model
+* Freestream Mach number of approximately **0.73**
+* Angle of attack of approximately **2.79°**
+* `blockMesh` background-domain generation
+* Feature extraction using `surfaceFeatureExtract`
+* `snappyHexMesh` surface-conforming meshing
+* Explicit feature-edge refinement
+* Three nested volumetric refinement regions
+* Boundary-layer mesh generation
+* Approximately **3.31 million computational cells**
+* Parallel decomposition into **32 subdomains**
+* 3D Mach-number post-processing in ParaView
+
+![3D Fighter Aircraft Mach Number](projects/3D_Fighter_Aircraft_OpenFOAM/images/m.jpeg)
+
+A lightweight OpenFOAM case is included in the repository so that the case setup and meshing workflow can be inspected and the mesh regenerated without storing the full generated 3.31-million-cell mesh.
+
+> This is a **guided learning project** completed as part of the **FlowThermoLab – CFD of High-Speed Aerodynamics** course. Credit for the original tutorial framework and educational material belongs to FlowThermoLab and the respective course instructors.
+
+**Tools:** OpenFOAM · `rhoSimpleFoam` · `blockMesh` · `snappyHexMesh` · `surfaceFeatureExtract` · k-ω SST · Compressible RANS · Parallel CFD · ParaView
+
+[View Full Project →](projects/3D_Fighter_Aircraft_OpenFOAM/README.md)
+
+[Download Clean OpenFOAM Case →](projects/3D_Fighter_Aircraft_OpenFOAM/3D_Fighter_Aircraft_OpenFOAM_CleanCase.zip)
+
+---
+
 # Technical Skills Demonstrated
 
 ## Computational Fluid Dynamics
 
 * Internal and external flow simulation
+* 2D and 3D CFD
 * Incompressible and compressible CFD
 * Transonic and hypersonic aerodynamics
 * Steady-state simulations
@@ -136,6 +177,7 @@ The project also provided practical experience with the OpenFOAM meshing workflo
 * Pressure and velocity analysis
 * Numerical convergence assessment
 * Solver troubleshooting and stabilisation
+* Engineering interpretation of CFD results
 
 ## Turbulence Modelling
 
@@ -145,6 +187,7 @@ The project also provided practical experience with the OpenFOAM meshing workflo
 * Turbulence-model comparison
 * Turbulence initialisation
 * Separated turbulent flows
+* Near-wall aerodynamic modelling
 
 ## High-Speed CFD
 
@@ -152,7 +195,9 @@ The project also provided practical experience with the OpenFOAM meshing workflo
 * Transonic aerodynamics
 * Hypersonic aerodynamics
 * Density-based compressible solvers
+* Compressible pressure-based OpenFOAM solvers
 * Axisymmetric CFD
+* 3D external aerodynamics
 * Pressure far-field / freestream boundary conditions
 * Perfect-gas modelling
 * Temperature-dependent viscosity using Sutherland's law
@@ -165,12 +210,18 @@ The project also provided practical experience with the OpenFOAM meshing workflo
 * CFD case setup
 * `blockMesh`
 * `snappyHexMesh`
-* Surface geometry import
-* Local mesh refinement
+* `surfaceFeatureExtract`
+* STL surface geometry import
+* Explicit feature refinement
+* Surface refinement
+* Nested volumetric refinement
+* Boundary-layer mesh generation
 * Freestream boundary conditions
 * Thermophysical-property configuration
 * Turbulence-model selection
 * Compressible-flow simulation
+* `rhoSimpleFoam`
+* Parallel domain decomposition
 * Simulation execution
 * Result interpretation
 
@@ -183,19 +234,25 @@ The project also provided practical experience with the OpenFOAM meshing workflo
 * SST k-ω turbulence
 * Pressure far-field boundaries
 * Adaptive Mesh Refinement
-* Solver monitoring and convergence troubleshooting
+* Solver monitoring
+* Convergence troubleshooting
+* Density and aerodynamic-result post-processing
 
 ## CAD & Meshing
 
 * FreeCAD
 * SALOME
+* STL geometry preparation
 * OpenFOAM `blockMesh`
 * OpenFOAM `snappyHexMesh`
+* Feature-edge extraction
 * Geometry preparation
 * CFD mesh generation
 * Boundary identification
 * Surface-based refinement
 * Local mesh refinement
+* Nested 3D refinement regions
+* Boundary-layer generation
 
 ## Post-Processing
 
@@ -205,6 +262,7 @@ The project also provided practical experience with the OpenFOAM meshing workflo
 * Velocity visualisation
 * Mach-number contours
 * Density contours
+* 3D flow-field visualisation
 * Residual monitoring
 * Aerodynamic-monitor plots
 * CFD result interpretation
@@ -222,6 +280,8 @@ Geometry Preparation
         ↓
 Meshing
         ↓
+Mesh Quality Assessment
+        ↓
 Physics & Boundary Conditions
         ↓
 Solver Setup
@@ -233,101 +293,3 @@ Convergence Assessment
 Post-Processing
         ↓
 Engineering Interpretation
-```
-
-A particular emphasis is placed on understanding **why specific modelling and numerical choices are made**, rather than treating CFD purely as a software workflow.
-
----
-
-# Software & Tools
-
-### CFD Solvers
-
-`OpenFOAM` · `ANSYS Fluent`
-
-### CAD & Meshing
-
-`FreeCAD` · `SALOME` · `blockMesh` · `snappyHexMesh`
-
-### Post-Processing
-
-`ParaView` · `ANSYS Fluent`
-
-### CFD Methods
-
-`RANS` · `k-ε` · `k-ω SST` · `Compressible Flow` · `Transonic CFD` · `Hypersonic CFD` · `Axisymmetric CFD` · `AMR`
-
----
-
-# About This Portfolio
-
-The objective of this repository is to document selected engineering simulation studies with emphasis on:
-
-* Clear CFD methodology
-* Appropriate physical modelling
-* Numerical-method understanding
-* Reproducible workflows
-* Solver troubleshooting
-* Engineering interpretation of results
-* Experience with both open-source and commercial CFD tools
-* Continuous development of practical CAE/CFD skills
-
-The projects range from introductory benchmark studies to more specialised high-speed-flow simulations.
-
-Some projects are independent studies, while others are guided benchmark or course exercises. Guided projects are identified clearly and credited to the original educational source.
-
-Additional CFD and CAE studies will be added progressively.
-
----
-
-# Repository Structure
-
-```text
-CFD-CAE-Portfolio/
-│
-├── README.md
-│
-└── projects/
-    │
-    ├── Open_Source_CFD_Analysis/
-    │   ├── README.md
-    │   ├── Geom.FCStd
-    │   ├── Geom-Sweep.step
-    │   ├── Mesh_3.unv
-    │   ├── P.jpg
-    │   └── U.jpg
-    │
-    ├── Turbulence_model_comparison/
-    │   ├── README.md
-    │   ├── pitzDaily_eps.7z
-    │   ├── pitzDaily_omega.7z
-    │   └── k-omega vs k-epsilon.jpg
-    │
-    ├── Hypersonic_Aerospike_Fluent/
-    │   ├── README.md
-    │   ├── Density.PNG
-    │   ├── residuals.png
-    │   └── drag_monitor.png
-    │
-    └── RAE2822_Transonic_OpenFOAM/
-        ├── README.md
-        ├── images/
-        │   ├── 0-mesh.jpeg
-        │   ├── 1-mesh.jpeg
-        │   ├── 2-mesh.jpeg
-        │   ├── 3-mesh.jpeg
-        │   ├── mach.jpeg
-        │   └── pressure.jpeg
-        │
-        └── OpenFOAM reference case files
-```
-
----
-
-## Portfolio Focus
-
-**CFD · CAE · OpenFOAM · ANSYS Fluent · Compressible Flow · Transonic CFD · Hypersonic CFD · Turbulence Modelling · snappyHexMesh · Meshing · Post-Processing**
-
----
-
-**More CFD and CAE projects will be added as the portfolio develops.**
