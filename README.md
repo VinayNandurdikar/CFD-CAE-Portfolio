@@ -162,6 +162,19 @@ A lightweight OpenFOAM case is included in the repository so that the case setup
 [Download Clean OpenFOAM Case →](projects/3D_Fighter_Aircraft_OpenFOAM/3D_Fighter_Aircraft_OpenFOAM_CleanCase.zip)
 
 ---
+## 6. Cylinder Wake Vortex Shedding and FFT — ANSYS Fluent
+
+A transient 2D simulation of airflow past a circular cylinder. Lift and wake-pressure time histories were analysed using FFT to explore vortex shedding. The pressure signal showed a frequency approximately twice the lift frequency.
+
+The frequency changed across successive solver continuations, so this is presented as an exploratory study rather than a validated time-step-independent result.
+
+![Cylinder Wake Frequency Spectra](projects/Cylinder_Wake_FFT/figures/frequency_spectra.png)
+
+**Tools:** ANSYS Fluent · Transient CFD · FFT · Signal Processing
+
+[View Full Project →](projects/Cylinder_Wake_FFT/README.md)
+
+---
 
 # Technical Skills Demonstrated
 
