@@ -9,8 +9,6 @@ The portfolio includes both **open-source CFD workflows** and **ANSYS Fluent sim
 ---
 
 # Projects
-
-## 1. Open-Source CFD Analysis of Flow Through a 90° Pipe Elbow
 ## Browse projects by tool
 
 ### OpenFOAM and open-source CFD
@@ -24,6 +22,8 @@ The portfolio includes both **open-source CFD workflows** and **ANSYS Fluent sim
 
 - [Hypersonic aerospike — Mach 6.06](projects/Hypersonic_Aerospike_Fluent/README.md)
 - [Cylinder wake — lift, pressure and FFT](projects/Cylinder_Wake_FFT/README.md)
+
+## 1. Open-Source CFD Analysis of Flow Through a 90° Pipe Elbow
 
 ---
 An end-to-end CFD project demonstrating a completely open-source engineering workflow:
