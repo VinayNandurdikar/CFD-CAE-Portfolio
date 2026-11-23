@@ -17,7 +17,7 @@ The portfolio includes both **open-source CFD workflows** and **ANSYS Fluent sim
 - [Turbulence model comparison — k-ε vs k-ω SST](projects/Turbulence_model_comparison/README.md)
 - [RAE2822 transonic aerofoil](projects/RAE2822_Transonic_OpenFOAM/README.md)
 - [3D fighter aircraft external aerodynamics](projects/3D_Fighter_Aircraft_OpenFOAM/README.md)
-
+- [FOSSEE OpenFOAM Workshop — Academic Foundations to Industrial Applications](projects/OpenFOAM_FOSSEE_Workshop/README.md)
 ### ANSYS Fluent
 
 - [Hypersonic aerospike — Mach 6.06](projects/Hypersonic_Aerospike_Fluent/README.md)
