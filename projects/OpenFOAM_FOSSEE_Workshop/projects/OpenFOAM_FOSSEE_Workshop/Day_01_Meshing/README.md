@@ -44,11 +44,11 @@ Layer addition is disabled in the current configuration.
 
 ### Mixer background mesh
 
-![Mixer background mesh](images/mixer_background_mesh.png)
+![Mixer background mesh](<Rectangular background mesh.png>)
 
 ### Mixer mesh after snappyHexMesh
 
-![Mixer mesh](images/mixer_snappy_mesh.png)
+![Mixer mesh](<Final mixer mesh.png>)
 
 ## What I Learned
 
